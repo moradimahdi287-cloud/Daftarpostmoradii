@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دفتر پست مرادی</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap');
+        body { font-family: 'Vazirmatn', system-ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
+<!-- Login Page -->
+<div id="login-page" class="min-h-screen flex items-center justify-center">
+    <div class="bg-white dark:bg-gray-800 p-10 rounded-3xl shadow-2xl w-full max-w-md">
+        <div class="text-center mb-8">
+            <i class="fa-solid fa-envelope text-6xl text-blue-600"></i>
+            <h1 class="text-3xl font-bold mt-4">دفتر پست مرادی</h1>
+        </div>
+        <input id="username" type="text" value="admin" class="w-full p-5 rounded-2xl border mb-4" placeholder="نام کاربری">
+        <input id="password" type="password" value="123456" class="w-full p-5 rounded-2xl border mb-6" placeholder="رمز عبور">
+        <button onclick="login()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 rounded-3xl text-xl font-bold">ورود</button>
+    </div>
+</div>
+
+<!-- Main App -->
+<div id="main-app" class="hidden flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-72 bg-white dark:bg-gray-800 border-l shadow-2xl">
+        <div class="p-6 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
+            <h1 class="text-2xl font-bold">دفتر پست مرادی</h1>
+        </div>
+        <nav class="p-4 space-y-1">
+            <a onclick="navigateTo('home')" class="block px-5 py-4 rounded-2xl hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer font-medium">صفحه اصلی</a>
+            <a onclick="navigateTo('list')" class="block px-5 py-4 rounded-2xl hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer font-medium">لیست مرسولات</a>
+            <a onclick="navigateTo('archive')" class="block px-5 py-4 rounded-2xl hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer font-medium">بایگانی</a>
+            <a onclick="navigateTo('settings')" class="block px-5 py-4 rounded-2xl hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer font-medium">تنظیمات</a>
+        </nav>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 overflow-auto p-8">
+        <h2 id="page-title" class="text-3xl font-bold mb-8">ثبت مرسوله جدید</h2>
+        
+        <!-- Home -->
+        <div id="page-home">
+            <form id="shipment-form" onsubmit="registerShipment(event)" class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 space-y-6">
+                <input id="customer-name" type="text" placeholder="نام مشتری" required class="w-full p-5 rounded-2xl border text-lg">
+                <!-- بقیه فیلدها رو می‌تونی بعداً کامل کنیم -->
+                <button type="submit" class="w-full bg-blue-600 text-white py-6 rounded-3xl text-xl font-bold">ثبت مرسوله</button>
+            </form>
+        </div>
+
+        <!-- List, Archive, Settings -->
+        <div id="page-list" class="hidden">لیست مرسولات (بعدا کامل میشه)</div>
+        <div id="page-archive" class="hidden">بایگانی</div>
+        <div id="page-settings" class="hidden bg-white dark:bg-gray-800 rounded-3xl p-8">
+            <h3 class="text-xl font-bold mb-6">تنظیمات</h3>
+            <button onclick="toggleDarkMode()" class="block w-full text-left px-6
